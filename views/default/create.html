@@ -2,11 +2,8 @@
 
 {{
 form.elements("#anmeldung_vorname__row")[0].insert(0,H3(T("Persönliche Daten")))
-form.elements("#anmeldung_spieler__row")[0].insert(0,H3(T("Volleyballturnier")))
-form.elements("#anmeldung_fr_bierstuben__row")[0].insert(0,H3(T("Karfreitag 03.04.2015")))
-form.elements("#anmeldung_sa_flughafen__row")[0].insert(0,H3(T("Samstag 04.04.2015")))
-form.elements("#anmeldung_so_spieler__row")[0].insert(0,H3(T("Ostersonntag 05.04.2015")))
-form.elements("#anmeldung_mo_verabschiedung__row")[0].insert(0,H3(T("Ostermontag 06.04.2015")))
+form.elements("#anmeldung_so_barfuesser__row")[0].insert(0,H3(T("Sonntag 01.05.2016")))
+form.elements("#anmeldung_mo_wuerzburg__row")[0].insert(0,H3(T("Montag 02.05.2016")))
 form.elements("#anmeldung_kommentar__row")[0].insert(0,H3(T("Sonstiges")))
 }}
   
@@ -47,9 +44,9 @@ $( document ).ready(function() {
   });
   
   
-  options('sa_flughafen', 'sa_kletterhalle');
-  options('sa_rathaus', 'sa_krimitour');
-  options('so_spieler', 'so_zuschauer');
+//  options('sa_flughafen', 'sa_kletterhalle');
+//  options('sa_rathaus', 'sa_krimitour');
+//  options('so_spieler', 'so_zuschauer');
   
   // Max Anzahl Teilnehmer
   {{for f in limit_erreicht:}}	
@@ -60,7 +57,7 @@ $( document ).ready(function() {
 	
 </script>
 
-<h2>{{=T('Neue Anmeldung zum Ostervolleyballturnier 2015')}}</h2>
+<h2>{{=T('Neue Anmeldung zum Europatreffen 2016')}}</h2>
 
 {{=form}}
 

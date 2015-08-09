@@ -7,7 +7,7 @@
 
 #response.logo = A(B('web',SPAN(2),'py'),XML('&trade;&nbsp;'),
 #                  _class="brand",_href="http://www.web2py.com/")
-response.title = 'Ostervolleyballturnier 2015'
+response.title = 'Europatreffen 2016'
 response.subtitle = ''
 
 ## read more at http://dev.w3.org/html5/markup/meta.name.html

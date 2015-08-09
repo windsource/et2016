@@ -53,50 +53,34 @@ db.define_table('anmeldung',
    Field('geburtsdatum', 'date',
          requires = IS_DATE(format='%d.%m.%Y'),
          label=T('Geburtsdatum')),
-   Field('kind', 'boolean', 
-         label=T('Kind bis 12 Jahre')),
    Field('vegetarier', 'boolean', 
          label=T('Vegetarier')),
    Field('mitglied', 'boolean',
          label=T('Mitglied im KdG bzw. KLM')),
    Field('bezirk',
          label=T('Bezirk (falls Mitglied)')),
-   Field('spieler', 'boolean', 
-         label=T('Ich spiele mit')),
-   Field('mannschaft',
-         label=T('Name der Mannschaft')),
-   Field('mannschaft_gesucht', 'boolean', 
-         label=T('Ich suche noch eine Mannschaft')),                                                   
    Field('anreise', 'date',
          requires = IS_DATE(format='%d.%m.%Y'),
-         default=datetime.date(2015, 4, 3),
+         default=datetime.date(2016, 5, 1),
          label=('Anreise')),
    Field('abreise', 'date',
          requires = IS_DATE(format='%d.%m.%Y'),
-         default=datetime.date(2015, 4, 6),
+         default=datetime.date(2016, 5, 8),
          label=('Abreise')),
    Field('unterkunft',
-         label=('Name/Anschrift der Unterkunft in Leipzig')),
-   Field('fr_bierstuben', 'boolean', 
-         label=T('Abends Begrüßung in „Wenzel Prager Bierstuben“')),
-   Field('sa_flughafen', 'boolean', 
-         label=T('Vormittags Option 1: Führung Flughafen')),
-   Field('sa_kletterhalle', 'boolean', 
-         label=T('Vormittags Option 2: Schnupperkurs Kletterhalle')),
-   Field('sa_rathaus', 'boolean', 
-         label=T('Nachmittags Option 1: Führung Altes Rathaus')),
-   Field('sa_krimitour', 'boolean', 
-         label=T('Nachmittags Option 2: Krimi-Tour')),
-   Field('sa_abendessen', 'boolean', 
-         label=T('Abends Essen im „Thüringer Hof“')),
-   Field('so_spieler', 'boolean', 
-         label=T('Volleyballturnier als Spieler (Mittagessen, Getränk, Startgebühr)')),
-   Field('so_zuschauer', 'boolean', 
-         label=T('Volleyballturnier als Zuschauer (Mittagessen, Getränk)')),
-   Field('so_party', 'boolean', 
-         label=T('Abends Party mit Buffet und Disko')),
+         label=('Name/Anschrift der Unterkunft in Nürnberg')),
+   
+   Field('so_barfuesser', 'boolean', 
+         label=T('Begrüßung im "Barfüßer"')),
+   Field('mo_wuerzburg', 'boolean', 
+         label=T('Tagesausflug nach Würzburg"')),
+   Field('mo_essen', 'integer',
+         requires = IS_IN_SET((1,2), ['Essen 1','Essen 2']),
+         label=T('Essensauswahl')),
+
    Field('mo_verabschiedung', 'boolean', 
-         label=T('Vormittags Verabschiedung')),
+         label=T('Verabschiedung')),
+
    Field('kommentar', 'text',
          label=T("Kommentar")),
    Field('bedingungen', 'boolean', 
@@ -104,6 +88,8 @@ db.define_table('anmeldung',
          label=XML(T('Ich akzeptiere die %s' % A('Teilnahmebedingungen',_href='http://ostervolleyballturnier.de/?page_id=73',_target='blank')))),
    Field('anmeldedatum', 'datetime',
          default=request.now, writable=False, readable=False),
+   Field('sprache',
+         default=session.language, writable=False, readable=False),
    Field('betrag', 'decimal(9,2)', 
          writable=False, readable=False, label="Soll"),
    Field('bezahlt', 'decimal(9,2)', 
@@ -144,35 +130,20 @@ class Price(object):
         return self.price_adult
     
 
-db.anmeldung.fr_bierstuben.preis = Price(0)
-db.anmeldung.sa_flughafen.preis = Price(15, 13.5, 6)
-db.anmeldung.sa_kletterhalle.preis = Price(25, 22.5, 13)
-db.anmeldung.sa_rathaus.preis = Price(12, 10.8, 3)
-db.anmeldung.sa_krimitour.preis = Price(12, 10.8, 3)
-db.anmeldung.sa_abendessen.preis = Price(0)
-db.anmeldung.so_spieler.preis = Price(12, 10.8, 6)
-db.anmeldung.so_zuschauer.preis = Price(8, 7, 4)
-db.anmeldung.so_party.preis = Price(40, 36, 15)
+db.anmeldung.so_barfuesser.preis = Price(0)
+db.anmeldung.mo_wuerzburg.preis = Price(15)
 db.anmeldung.mo_verabschiedung.preis = Price(0)
 
 db.anmeldung.bedingungen.comment = T("Teilnahme auf eigene Gefahr")
      
 # Max. Anzahl Teilnehmer
-db.anmeldung.sa_flughafen.limit = (29, T('Führung Flughafen ist leider ausgebucht. Interesse an Warteliste bitte unten im Kommentar vermerken'))
-db.anmeldung.sa_rathaus.limit = (24, T('Führung Altes Rathaus ist leider ausgebucht. Interesse an Warteliste bitte unten im Kommentar vermerken'))
-db.anmeldung.sa_krimitour.limit = (28, T('Krimi-Tour ist leider ausgebucht. Interesse an Warteliste bitte unten im Kommentar vermerken'))
-db.anmeldung.spieler.limit = (32, T('Max. Anzahl an Spielern erreicht. Interesse an Warteliste bitte unten im Kommentar vermerken'))
+#db.anmeldung.sa_flughafen.limit = (29, T('Führung Flughafen ist leider ausgebucht. Interesse an Warteliste bitte unten im Kommentar vermerken'))
+#db.anmeldung.sa_rathaus.limit = (24, T('Führung Altes Rathaus ist leider ausgebucht. Interesse an Warteliste bitte unten im Kommentar vermerken'))
+#db.anmeldung.sa_krimitour.limit = (28, T('Krimi-Tour ist leider ausgebucht. Interesse an Warteliste bitte unten im Kommentar vermerken'))
          
 
-veranstaltungen=('fr_bierstuben',
-                 'sa_flughafen',
-                 'sa_kletterhalle',
-                 'sa_rathaus',
-                 'sa_krimitour',
-                 'sa_abendessen',
-                 'so_spieler',
-                 'so_zuschauer',
-                 'so_party',
+veranstaltungen=('so_barfuesser',
+                 'mo_wuerzburg',
                  'mo_verabschiedung')
 
  
