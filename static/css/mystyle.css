@@ -1,0 +1,17 @@
+/** general stuff **/
+
+.navbar {display: none;}
+#header {display: none;}
+#footer {display: none;}
+body {background-color:#fca623;}
+
+h2 {padding-bottom:20px;}
+
+/** create form **/
+
+#create_form .w2p_fl {display: inline-block; width:370px; padding-right:10px;}
+#create_form .w2p_fw {display: inline-block; padding-right:15px;}
+#create_form input.boolean {vertical-align: top;}
+#create_form #submit_record__row {padding-top:30px;}
+#create_form label {white-space:normal;}
+#create_form #anmeldung_mi_bowling_schuhgroesse {width:70px;}

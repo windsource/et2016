@@ -1,0 +1,86 @@
+{{extend 'layout2.html'}}
+
+{{
+def simple_table(fields):
+	price = False
+	for f in fields:
+		if hasattr(db.anmeldung[f], 'preis'):
+            price=True
+         pass
+    pass
+		
+	rows = []
+	for f in fields:
+		td1 = TD(db.anmeldung[f].label+": ")
+		v = session.vars[f]
+		if isinstance(v, datetime.date):
+			td2 = TD(v.strftime(T("%d.%m.%Y", lazy=False)))
+		else:
+			td2 = TD(v if type(v) is not bool else T(str(v)))
+			pass
+		if price:
+			if hasattr(db.anmeldung[f], 'preis') and v:
+				td3 = TD(db.anmeldung[f].preis)
+			else:
+				td3 = TD()	            
+				pass
+			rows.append(TR(td1,td2,td3))									
+		else:
+			rows.append(TR(td1,td2))
+			pass
+		pass
+	return TABLE(*rows)
+	pass
+}}
+
+{{=H2(T('Bitte prüfe die Daten und bestätige sie unten'))}}
+
+{{=H3(T("Persönliche Daten"))}}
+
+{{=simple_table(['vorname', 'nachname', 'email', 'telefon', 'strasse', 'plz', 'ort',
+                 'geburtsdatum', 'kind', 'vegetarier', 'mitglied', 'bezirk'])}}
+
+
+{{=H3(T("Unterkunft"))}}
+
+{{=simple_table(['anreise', 'abreise', 'unterkunft'])}}
+
+
+{{=H3(T("Volleyballturnier"))}}
+
+{{=simple_table(['spieler', 'mannschaft', 'mannschaft_gesucht'])}}
+
+
+{{=H3(T("Karfreitag 03.04.2015"))}}
+
+{{=simple_table(['fr_bierstuben'])}}
+
+
+{{=H3(T("Samstag 04.04.2015"))}}
+
+{{=simple_table(['sa_flughafen', 'sa_kletterhalle', 'sa_rathaus', 'sa_krimitour', 'sa_abendessen'])}}
+
+
+{{=H3(T("Ostersonntag 05.04.2015"))}}
+
+{{=simple_table(['so_spieler', 'so_zuschauer', 'so_party'])}}
+
+
+{{=H3(T("Ostermontag 06.04.2015"))}}
+
+{{=simple_table(['mo_verabschiedung'])}}
+
+
+
+{{=H3(T("Sonstiges"))}}
+
+{{=simple_table(['kommentar'])}}
+
+{{=H3(T("Gesamtpreis: %.2f €") % session.vars.betrag)}}
+
+
+
+
+{{=form}}
+
+

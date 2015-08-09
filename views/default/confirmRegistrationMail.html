@@ -1,0 +1,109 @@
+<html>
+<head>
+<style type="text/css">
+p, table {font-size: 100%;}
+</style>
+</head>
+<body>
+{{import re}}
+{{=P(T('Vielen Dank für die Anmeldung zum Ostervolleyballturnier 2015 in Leipzig vom 03. bis 06. April 2014.'))}}
+
+<p>
+{{=T('Die Anmeldung wird erst verbindlich mit der Überweisung des Betrags von %(betrag).2f Euro auf das Konto des KdG Leipzig:') % vars}}
+{{=BR()}}
+{{=T('Konto-Nr.: 1630068167 / BLZ: 860 555 92 / Bankname: Sparkasse Leipzig')}}
+{{=BR()}}
+{{=T('IBAN: DE63 8605 5592 1630 0681 67 / BIC: WELADE8LXXX')}}
+{{=BR()}}
+{{=BR()}}
+{{=T('Als Verwendungszweck bitte "OVT 2015 %(vorname)s %(nachname)s" angeben.') % vars}}
+</p>
+
+
+{{=H3(T('Die folgenden Daten sind vermerkt:'))}}
+
+{{
+def simple_table(fields):
+  price = False
+#  for f in fields:
+#    if hasattr(db.anmeldung[f], 'preis'):
+#            price=True
+#         pass
+#    pass
+    
+  rows = []
+  for f in fields:
+    td1 = TD(db.anmeldung[f].label+": ")
+    v = session.vars[f]
+    m = re.match(r'(\d\d\d\d)-(\d\d)-(\d\d)', v if isinstance(v, str) else "")
+    if m:
+      td2 = TD("%s.%s.%s" % (m.group(3), m.group(2), m.group(1)))
+    else:
+      td2 = TD(v if type(v) is not bool else T(str(v)))
+      pass
+    if price:
+      if hasattr(db.anmeldung[f], 'preis') and v:
+        td3 = TD(db.anmeldung[f].preis)
+      else:
+        td3 = TD()              
+        pass
+      rows.append(TR(td1,td2,td3))                  
+    else:
+      rows.append(TR(td1,td2))
+      pass
+    pass
+  return P(TABLE(*rows))
+  pass
+}}
+
+{{=H3(T("Persönliche Daten"))}}
+
+{{=simple_table(['vorname', 'nachname', 'email', 'telefon', 'strasse', 'plz', 'ort',
+                 'geburtsdatum', 'kind', 'vegetarier', 'mitglied', 'bezirk'])}}
+
+
+{{=H3(T("Unterkunft"))}}
+
+{{=simple_table(['anreise', 'abreise', 'unterkunft'])}}
+
+
+{{=H3(T("Volleyballturnier"))}}
+
+{{=simple_table(['spieler', 'mannschaft', 'mannschaft_gesucht'])}}
+
+
+{{=H3(T("Karfreitag 03.04.2015"))}}
+
+{{=simple_table(['fr_bierstuben'])}}
+
+
+{{=H3(T("Samstag 04.04.2015"))}}
+
+{{=simple_table(['sa_flughafen', 'sa_kletterhalle', 'sa_rathaus', 'sa_krimitour', 'sa_abendessen'])}}
+
+
+{{=H3(T("Ostersonntag 05.04.2015"))}}
+
+{{=simple_table(['so_spieler', 'so_zuschauer', 'so_party'])}}
+
+
+{{=H3(T("Ostermontag 06.04.2015"))}}
+
+{{=simple_table(['mo_verabschiedung'])}}
+
+
+
+{{=H3(T("Sonstiges"))}}
+
+{{=simple_table(['kommentar'])}}
+
+<br />
+
+<p>
+Viele Grüße
+</p>
+<p>
+Orgateam Ostervolleyballturnier 2015
+</p>
+</body>
+</html>

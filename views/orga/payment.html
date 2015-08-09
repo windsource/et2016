@@ -1,0 +1,55 @@
+{{extend 'layout.html'}}
+
+<style>
+table tr td {border-style:solid; border-width:1px;}
+#firstRow  {font-weight: bold;}
+#lastRow  {font-weight: bold;}
+.notPayed {background-color: red}
+.equal {background-color: lime}
+.notEqual {background-color: orange}
+</style>
+
+<table>
+<tr id='firstRow'>
+<td>Vorname</td>
+<td>Nachname</td>
+<td>Soll</td>
+<td>Ist</td>
+<td>Zahlungsdatum</td>
+<td></td>
+</tr>
+
+{{gesamt_soll=0}}
+{{gesamt_ist=0}}
+{{for row in rows:}}
+{{if row.betrag==row.bezahlt:}}
+<tr class='equal'>
+{{elif row.bezahlt==0.0:}}
+<tr class='notPayed'>
+{{else:}}
+<tr class='notEqual'>
+{{pass}}
+
+<td>{{=row.vorname}}</td>
+<td>{{=row.nachname}}</td>
+<td>{{="%.2f €" % row.betrag}}</td>
+<td>{{="%.2f €" % row.bezahlt}}</td>
+<td>{{=row.zahlungsdatum if not isinstance(row.zahlungsdatum, datetime.date) 
+                         else row.zahlungsdatum.strftime("%d.%m.%Y")}}</td>
+<td>{{=A('bearbeiten',_href=URL('changePayment',args=[row.id]))}}</td>
+</tr>
+{{
+gesamt_soll += row.betrag
+gesamt_ist += row.bezahlt
+pass
+}}
+<tr id='lastRow'>
+<td></td>
+<td></td>
+<td>{{="%.2f €" % gesamt_soll}}</td>
+<td>{{="%.2f €" % gesamt_ist}}</td>
+<td></td>
+<td></td>
+</tr>
+
+</table>

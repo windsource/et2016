@@ -1,0 +1,26 @@
+{{extend 'layout.html'}}
+
+{{
+def printBirthday(day, month):
+	rows=db((db.anmeldung.geburtsdatum.month()==month) & (db.anmeldung.geburtsdatum.day()==day)).select(
+		db.anmeldung.vorname,db.anmeldung.nachname,db.anmeldung.geburtsdatum,db.anmeldung.bezirk)
+	return SQLTABLE(rows, headers={'anmeldung.vorname':'Vorname',
+	                               'anmeldung.nachname':'Nachname',
+	                               'anmeldung.geburtsdatum':'Geburtsdatum',
+	                               'anmeldung.bezirk':'Bezirk'})
+	pass
+}}
+	
+
+<h3>{{=T("Freitag 03.04.2015")}}</h3>
+{{=printBirthday(3,4)}}
+
+<h3>{{=T("Samstag 04.04.2015")}}</h3>
+{{=printBirthday(4,4)}}
+
+<h3>{{=T("Sonntag 05.04.2015")}}</h3>
+{{=printBirthday(5,4)}}
+
+<h3>{{=T("Montag 06.04.2015")}}</h3>
+{{=printBirthday(6,4)}}
+
