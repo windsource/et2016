@@ -28,7 +28,6 @@ if session.language is not None:
     T.force(session.language)
     
 
-
 db.define_table('anmeldung',
    Field('vorname', 
          requires = IS_NOT_EMPTY(error_message=T('Bitte einen Vornamen eingeben')), 
@@ -76,8 +75,6 @@ db.define_table('anmeldung',
          label=T('Tagesausflug nach Würzburg')),
    Field('mo_essen', 'integer',
          default=0,
-         requires = IS_IN_SET((0,1,2), ['Kein Essen','Essen 1','Essen 2']),
-         represent = lambda value,row: "Hunger", # does not work!
          label=T('Essensauswahl')),
 
    Field('mo_verabschiedung', 'boolean', 
@@ -131,6 +128,11 @@ class Price(object):
             return self.price_member;
         return self.price_adult
     
+
+db.anmeldung.mo_essen.myset = {'0':T('Kein Essen'), '1':T('Essen 1'), '2':T('Essen 2')}
+db.anmeldung.mo_essen.requires = IS_IN_SET(db.anmeldung.mo_essen.myset)
+db.anmeldung.mo_essen.represent = lambda v, r: db.anmeldung.mo_essen.myset[str(v)]
+
 
 db.anmeldung.so_barfuesser.preis = Price(0)
 db.anmeldung.mo_wuerzburg.preis = Price(15)

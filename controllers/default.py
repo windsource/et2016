@@ -55,12 +55,12 @@ def confirm():
         db.anmeldung[0] = session.vars; # insert in DB
         
         context = dict(vars=session.vars)
-        message = response.render('default/confirmRegistrationMail.html', context)
-        mail.send(session.vars.email,
-                  subject= T("Anmeldung von %(vorname)s %(nachname)s zum Ostervolleyballturnier 2015") % session.vars,
-                  message=message,
-                  cc=['anmeldung@ostervolleyballturnier.de']
-                  )
+#        message = response.render('default/confirmRegistrationMail.html', context)
+#         mail.send(session.vars.email,
+#                   subject= T("Anmeldung von %(vorname)s %(nachname)s zum Ostervolleyballturnier 2015") % session.vars,
+#                   message=message,
+#                   cc=['anmeldung@ostervolleyballturnier.de']
+#                   )
 
         redirect(URL("printConfirmation"))
     return dict(form=form);
