@@ -29,7 +29,7 @@ def simple_table(fields):
 			rows.append(TR(td1,td2))
 			pass
 		pass
-	return TABLE(*rows)
+	return TABLE(*rows, _class='simpletable')
 	pass
 }}
 
@@ -38,7 +38,7 @@ def simple_table(fields):
 {{=H3(T("Persönliche Daten"))}}
 
 {{=simple_table(['vorname', 'nachname', 'email', 'telefon', 'strasse', 'plz', 'ort',
-                 'geburtsdatum', 'kind', 'vegetarier', 'mitglied', 'bezirk'])}}
+                 'geburtsdatum', 'vegetarier', 'mitglied', 'bezirk'])}}
 
 
 {{=H3(T("Unterkunft"))}}
@@ -46,30 +46,14 @@ def simple_table(fields):
 {{=simple_table(['anreise', 'abreise', 'unterkunft'])}}
 
 
-{{=H3(T("Volleyballturnier"))}}
+{{=H3(T("Sonntag 01.05.2016"))}}
 
-{{=simple_table(['spieler', 'mannschaft', 'mannschaft_gesucht'])}}
-
-
-{{=H3(T("Karfreitag 03.04.2015"))}}
-
-{{=simple_table(['fr_bierstuben'])}}
+{{=simple_table(['so_barfuesser'])}}
 
 
-{{=H3(T("Samstag 04.04.2015"))}}
+{{=H3(T("Montag 02.05.2016"))}}
 
-{{=simple_table(['sa_flughafen', 'sa_kletterhalle', 'sa_rathaus', 'sa_krimitour', 'sa_abendessen'])}}
-
-
-{{=H3(T("Ostersonntag 05.04.2015"))}}
-
-{{=simple_table(['so_spieler', 'so_zuschauer', 'so_party'])}}
-
-
-{{=H3(T("Ostermontag 06.04.2015"))}}
-
-{{=simple_table(['mo_verabschiedung'])}}
-
+{{=simple_table(['mo_wuerzburg', 'mo_essen'])}}
 
 
 {{=H3(T("Sonstiges"))}}

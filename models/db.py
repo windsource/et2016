@@ -73,9 +73,11 @@ db.define_table('anmeldung',
    Field('so_barfuesser', 'boolean', 
          label=T('Begrüßung im "Barfüßer"')),
    Field('mo_wuerzburg', 'boolean', 
-         label=T('Tagesausflug nach Würzburg"')),
+         label=T('Tagesausflug nach Würzburg')),
    Field('mo_essen', 'integer',
-         requires = IS_IN_SET((1,2), ['Essen 1','Essen 2']),
+         default=0,
+         requires = IS_IN_SET((0,1,2), ['Kein Essen','Essen 1','Essen 2']),
+         represent = lambda value,row: "Hunger", # does not work!
          label=T('Essensauswahl')),
 
    Field('mo_verabschiedung', 'boolean', 

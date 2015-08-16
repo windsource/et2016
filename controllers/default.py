@@ -9,7 +9,8 @@ def index():
 def create():
     response.menu = None
 
-    db.anmeldung.unterkunft.comment = T("Eine Übernachtung in der Halle ist leider nicht möglich.")
+    db.anmeldung.mo_essen.comment = T("Das Essen ist im Preis enthalten.")
+    db.anmeldung.geburtsdatum.comment = T("Wird für Preisberechnung und Busunternehmen benötigt.")
 
     col3 = {}
     limit_erreicht = {}
