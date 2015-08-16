@@ -102,13 +102,16 @@ db.define_table('anmeldung',
 
 class Price(object):
     """ Keeps the price for adults and optional for members and children """
-    child = T("Kinder bis 12 Jahre", lazy=False)
-    member = T("Mitglieder", lazy=False)
+    child16 = T("Kinder bis 16 J.", lazy=False)
+    child12 = T("Kinder bis 12 J.", lazy=False)
+    child6 = T("Kinder bis 6 J.", lazy=False)
+    referenceDate = datetime.date(2016,5,1)
     
-    def __init__(self, price_adult, price_member=None, price_child=None):
+    def __init__(self, price_adult, price_child16=None, price_child12=None, price_child6=None):
         self.price_adult = price_adult
-        self.price_child = price_child
-        self.price_member= price_member
+        self.price_child16 = price_child16
+        self.price_child12 = price_child12
+        self.price_child6 = price_child6
         
     @staticmethod
     def val_to_string(val):
@@ -117,16 +120,21 @@ class Price(object):
         return T('auf eigene Kosten', lazy=False)
     
     def __str__(self):
-        if (self.price_child is None) and (self.price_member is None):
+        if (self.price_child16 is None):
             return Price.val_to_string(self.price_adult)
-        return "%.2f €, %s %.2f €, %s %.2f €" % (self.price_adult, Price.member, self.price_member, Price.child, self.price_child)
+        return "%.2f €, %s %.2f €, %s %.2f €, %s %.2f €" % (self.price_adult, Price.child16, self.price_child16, Price.child12, self.price_child12, Price.child6, self.price_child6)
     
-    def get_val(self, member=False, child=False):
-        if child and self.price_child is not None:
-            return self.price_child;
-        if member and self.price_member is not None:
-            return self.price_member;
-        return self.price_adult
+    def get_val(self, dateOfBirth):
+        delta = self.referenceDate - dateOfBirth
+        age = delta.days / 365
+        if age < 6 and self.price_child6 is not None:
+            return self.price_child6
+        elif age < 12 and self.price_child12 is not None:
+            return self.price_child12
+        elif age < 16 and self.price_child16 is not None:
+            return self.price_child16
+        else:
+            return self.price_adult
     
 
 db.anmeldung.mo_essen.myset = {'0':T('Kein Essen'), '1':T('Essen 1'), '2':T('Essen 2')}
@@ -135,7 +143,7 @@ db.anmeldung.mo_essen.represent = lambda v, r: db.anmeldung.mo_essen.myset[str(v
 
 
 db.anmeldung.so_barfuesser.preis = Price(0)
-db.anmeldung.mo_wuerzburg.preis = Price(15)
+db.anmeldung.mo_wuerzburg.preis = Price(76, 55, 46, 38)
 db.anmeldung.mo_verabschiedung.preis = Price(0)
 
 db.anmeldung.bedingungen.comment = T("Teilnahme auf eigene Gefahr")
@@ -156,9 +164,11 @@ def gesamtpreis(vars):
     for k in vars:
         if hasattr(db.anmeldung[k],'preis'):
             if vars[k]:
-                betrag += db.anmeldung[k].preis.get_val(vars.mitglied, vars.kind)
+                betrag += db.anmeldung[k].preis.get_val(vars.geburtsdatum)
 
     return betrag
+
+konto = T('IBAN: ???  / BIC: ?? / Bank XY')
 
 
     
