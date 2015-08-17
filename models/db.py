@@ -1,6 +1,7 @@
 #@PydevCodeAnalysisIgnore
 
 import datetime
+from applications.et2016.modules.countries import *
 
 db = DAL(*DAL_ARGS, **DAL_KEYWORDS)
 
@@ -49,6 +50,10 @@ db.define_table('anmeldung',
    Field('ort',
          requires = IS_NOT_EMPTY(error_message=T('Bitte einen Ort eingeben')), 
          label=T('Ort')),
+   Field('land',
+         default = 'Germany',
+         requires = IS_IN_SET(COUNTRIES), 
+         label=T('Land')),
    Field('geburtsdatum', 'date',
          requires = IS_DATE(format='%d.%m.%Y'),
          label=T('Geburtsdatum')),
@@ -88,7 +93,7 @@ db.define_table('anmeldung',
    Field('anmeldedatum', 'datetime',
          default=request.now, writable=False, readable=False),
    Field('sprache',
-         default=session.language, writable=False, readable=False),
+         default=session.language if session.language is not None else "de", writable=False, readable=False),
    Field('betrag', 'decimal(9,2)', 
          writable=False, readable=False, label="Soll"),
    Field('bezahlt', 'decimal(9,2)', 

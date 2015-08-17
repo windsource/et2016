@@ -46,7 +46,7 @@ def create():
 def confirm():
     if session.vars == None:
         # After the confirmation has been printed, the back button has been used
-        redirect('http://www.ostervolleyballturnier.de')
+        redirect('http://www.europatreffen2016.eu')
         
     form=FORM(INPUT(_type='submit', _value=T('Daten absenden')))
     form.add_button(T("Korrigieren"),URL("create"))
