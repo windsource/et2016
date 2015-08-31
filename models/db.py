@@ -76,13 +76,49 @@ db.define_table('anmeldung',
    
    Field('so_barfuesser', 'boolean', 
          label=T('Begrüßung im "Barfüßer"')),
+
    Field('mo_wuerzburg', 'boolean', 
          label=T('Tagesausflug nach Würzburg')),
    Field('mo_essen', 'integer',
          default=0,
          label=T('Essensauswahl')),
 
-   Field('mo_verabschiedung', 'boolean', 
+   Field('di_reichsparteitag', 'boolean', 
+         label=T('Rundgang Reichsparteitagsgelände')),
+   Field('di_dokuzentrum', 'boolean', 
+         label=T('Dokumentationszentrum Reichsparteitagsgelände')),
+   Field('di_rangierbahnhof', 'boolean', 
+         label=T('Nürnberger Rangierbahnhof')),
+   Field('di_kino', 'boolean', 
+         label=T('Kino der etwas anderen Art')),
+
+   Field('mi_wanderung', 'boolean', 
+         label=T('Wanderung')),
+   Field('mi_essen_wanderung', 'integer',
+         default=0,
+         label=T('Essensauswahl Wanderung')),
+   Field('mi_tiergarten', 'boolean', 
+         label=T('Tiergarten')),
+   Field('mi_poolparty', 'boolean', 
+         label=T('Poolparty')),
+   
+   Field('do_minigolf', 'boolean', 
+         label=T('3D Schwarzlich Minigolf')),
+   Field('do_partyschiff', 'boolean', 
+         label=T('Partyschiff')),
+
+   Field('fr_regensburg', 'boolean', 
+         label=T('Tagesausflug nach Regensburg')),
+   Field('fr_essen', 'integer',
+         default=0,
+         label=T('Essensauswahl')),
+
+   Field('sa_stadtfuehrung', 'boolean', 
+         label=T('Große Stadtführung')),
+   Field('sa_ball', 'boolean', 
+         label=T('Ball')),
+
+   Field('so_verabschiedung', 'boolean', 
          label=T('Verabschiedung')),
 
    Field('kommentar', 'text',
@@ -146,10 +182,31 @@ db.anmeldung.mo_essen.myset = {'0':T('Kein Essen'), '1':T('Essen 1'), '2':T('Ess
 db.anmeldung.mo_essen.requires = IS_IN_SET(db.anmeldung.mo_essen.myset)
 db.anmeldung.mo_essen.represent = lambda v, r: db.anmeldung.mo_essen.myset[str(v)]
 
+db.anmeldung.mi_essen_wanderung.myset = {'0':T('Kein Wanderessen'), '1':T('Wanderessen 1'), '2':T('Wanderessen 2')}
+db.anmeldung.mi_essen_wanderung.requires = IS_IN_SET(db.anmeldung.mi_essen_wanderung.myset)
+db.anmeldung.mi_essen_wanderung.represent = lambda v, r: db.anmeldung.mi_essen_wanderung.myset[str(v)]
+
+db.anmeldung.fr_essen.myset = {'0':T('Kein Essen'), '1':T('Essen 1'), '2':T('Essen 2')}
+db.anmeldung.fr_essen.requires = IS_IN_SET(db.anmeldung.fr_essen.myset)
+db.anmeldung.fr_essen.represent = lambda v, r: db.anmeldung.fr_essen.myset[str(v)]
 
 db.anmeldung.so_barfuesser.preis = Price(0)
 db.anmeldung.mo_wuerzburg.preis = Price(76, 55, 46, 38)
-db.anmeldung.mo_verabschiedung.preis = Price(0)
+db.anmeldung.di_reichsparteitag.preis = Price(6.50)
+db.anmeldung.di_dokuzentrum.preis = Price(6.50)
+db.anmeldung.di_rangierbahnhof.preis = Price(6.50)
+db.anmeldung.di_kino.preis = Price(9.00)
+db.anmeldung.mi_wanderung.preis = Price(19)
+db.anmeldung.mi_essen_wanderung.preis = Price(0)
+db.anmeldung.mi_tiergarten.preis = Price(0)
+db.anmeldung.mi_poolparty.preis = Price(30)
+db.anmeldung.do_minigolf.preis = Price(0)
+db.anmeldung.do_partyschiff.preis = Price(30)
+db.anmeldung.fr_regensburg.preis = Price(45)
+db.anmeldung.fr_essen.preis = Price(0)
+db.anmeldung.sa_stadtfuehrung.preis = Price(6.5)
+db.anmeldung.sa_ball.preis = Price(68)
+db.anmeldung.so_verabschiedung.preis = Price(0)
 
 db.anmeldung.bedingungen.comment = T("Teilnahme auf eigene Gefahr")
      
@@ -161,7 +218,22 @@ db.anmeldung.bedingungen.comment = T("Teilnahme auf eigene Gefahr")
 
 veranstaltungen=('so_barfuesser',
                  'mo_wuerzburg',
-                 'mo_verabschiedung')
+                 'mo_essen',
+                 'di_reichsparteitag',
+                 'di_dokuzentrum',
+                 'di_rangierbahnhof',
+                 'di_kino',
+                 'mi_wanderung',
+                 'mi_essen_wanderung',
+                 'mi_tiergarten',
+                 'mi_poolparty',
+                 'do_minigolf',
+                 'do_partyschiff',
+                 'fr_regensburg',
+                 'fr_essen',
+                 'sa_stadtfuehrung',
+                 'sa_ball',
+                 'so_verabschiedung')
 
  
 def gesamtpreis(vars):
