@@ -41,7 +41,6 @@ $( document ).ready(function() {
   if (!$('input[name=mitglied]').is(':checked')) {
 	  $('input[name=bezirk]').prop('disabled', true);
   }
-	
   $('input[name=mitglied]').change(function() {
 	if ($(this).is(':checked')) {
 	  $('input[name=bezirk]').prop('disabled', false);
@@ -50,10 +49,25 @@ $( document ).ready(function() {
 	}
   });
   
+  $('input[name=di_reichsparteitag]').change(function() {
+	if ($(this).is(':checked')) {
+	  $('input[name=di_rangierbahnhof]').attr('checked', false);
+	}
+  });
+  $('input[name=di_dokuzentrum]').change(function() {
+	if ($(this).is(':checked')) {
+	  $('input[name=di_rangierbahnhof]').attr('checked', false);
+	}
+  });
+  $('input[name=di_rangierbahnhof]').change(function() {
+	if ($(this).is(':checked')) {
+	  $('input[name=di_reichsparteitag]').attr('checked', false);
+	  $('input[name=di_dokuzentrum]').attr('checked', false);
+	}
+  });
   
-//  options('sa_flughafen', 'sa_kletterhalle');
-//  options('sa_rathaus', 'sa_krimitour');
-//  options('so_spieler', 'so_zuschauer');
+  
+  options('mi_wanderung', 'mi_tiergarten');
   
   // Max Anzahl Teilnehmer
   {{for f in limit_erreicht:}}	
