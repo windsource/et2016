@@ -6,15 +6,15 @@ p, table {font-size: 100%;}
 </head>
 <body>
 {{import re}}
-{{=P(T('Vielen Dank für die Anmeldung zum Ostervolleyballturnier 2015 in Leipzig vom 03. bis 06. April 2014.'))}}
+{{=P(T('Vielen Dank für die Anmeldung zum Europatreffen 2016 in Nürnberg vom 01. bis 08. Mai 2016.'))}}
 
 <p>
-{{=T('Die Anmeldung wird erst verbindlich mit der Überweisung des Betrags von %(betrag).2f Euro auf das Konto des KdG Leipzig:') % vars}}
+{{=T('Die Anmeldung wird erst verbindlich mit der Überweisung des Betrags von %(betrag).2f Euro auf das Konto des KLM Nürnberg:') % vars}}
 {{=BR()}}
 {{=konto}}
 {{=BR()}}
 {{=BR()}}
-{{=T('Als Verwendungszweck bitte "OVT 2015 %(vorname)s %(nachname)s" angeben.') % vars}}
+{{=T('Als Verwendungszweck bitte "ET 2016 %(vorname)s %(nachname)s" angeben.') % vars}}
 </p>
 
 
@@ -36,6 +36,8 @@ def simple_table(fields):
     m = re.match(r'(\d\d\d\d)-(\d\d)-(\d\d)', v if isinstance(v, str) else "")
     if m:
       td2 = TD("%s.%s.%s" % (m.group(3), m.group(2), m.group(1)))
+	elif hasattr(db.anmeldung[f], 'represent') and db.anmeldung[f].represent is not None:
+		td2 = db.anmeldung[f].represent(v,None)
     else:
       td2 = TD(v if type(v) is not bool else T(str(v)))
       pass
@@ -57,7 +59,8 @@ def simple_table(fields):
 {{=H3(T("Persönliche Daten"))}}
 
 {{=simple_table(['vorname', 'nachname', 'email', 'telefon', 'strasse', 'plz', 'ort',
-                 'geburtsdatum', 'kind', 'vegetarier', 'mitglied', 'bezirk'])}}
+                 'land', 
+                 'geburtsdatum', 'vegetarier', 'mitglied', 'bezirk'])}}
 
 
 {{=H3(T("Unterkunft"))}}
@@ -65,30 +68,44 @@ def simple_table(fields):
 {{=simple_table(['anreise', 'abreise', 'unterkunft'])}}
 
 
-{{=H3(T("Volleyballturnier"))}}
+{{=H3(T("Sonntag 01.05.2016"))}}
 
-{{=simple_table(['spieler', 'mannschaft', 'mannschaft_gesucht'])}}
-
-
-{{=H3(T("Karfreitag 03.04.2015"))}}
-
-{{=simple_table(['fr_bierstuben'])}}
+{{=simple_table(['so_barfuesser'])}}
 
 
-{{=H3(T("Samstag 04.04.2015"))}}
+{{=H3(T("Montag 02.05.2016"))}}
 
-{{=simple_table(['sa_flughafen', 'sa_kletterhalle', 'sa_rathaus', 'sa_krimitour', 'sa_abendessen'])}}
-
-
-{{=H3(T("Ostersonntag 05.04.2015"))}}
-
-{{=simple_table(['so_spieler', 'so_zuschauer', 'so_party'])}}
+{{=simple_table(['mo_wuerzburg'])}}
 
 
-{{=H3(T("Ostermontag 06.04.2015"))}}
+{{=H3(T("Dienstag 03.05.2016"))}}
 
-{{=simple_table(['mo_verabschiedung'])}}
+{{=simple_table(['di_reichsparteitag', 'di_dokuzentrum', 'di_rangierbahnhof', 'di_kino'])}}
 
+
+{{=H3(T("Mittwoch 04.05.2016"))}}
+
+{{=simple_table(['mi_wanderung', 'mi_essen_wanderung', 'mi_tiergarten', 'mi_poolparty'])}}
+
+
+{{=H3(T("Donnerstag 05.05.2016"))}}
+
+{{=simple_table(['do_minigolf', 'do_partyschiff'])}}
+
+
+{{=H3(T("Freitag 06.05.2016"))}}
+
+{{=simple_table(['fr_regensburg', 'fr_essen'])}}
+
+
+{{=H3(T("Samstag 07.05.2016"))}}
+
+{{=simple_table(['sa_stadtfuehrung', 'sa_ball'])}}
+
+
+{{=H3(T("Sonntag 08.05.2016"))}}
+
+{{=simple_table(['so_verabschiedung'])}}
 
 
 {{=H3(T("Sonstiges"))}}
@@ -101,7 +118,7 @@ def simple_table(fields):
 Viele Grüße
 </p>
 <p>
-Orgateam Ostervolleyballturnier 2015
+Orgateam Europatreffen 2016
 </p>
 </body>
 </html>
