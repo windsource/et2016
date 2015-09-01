@@ -9,8 +9,6 @@ def index():
 def create():
     response.menu = None
 
-    db.anmeldung.geburtsdatum.comment = T("Wird für Preisberechnung und Busunternehmen benötigt.")
-
     col3 = {}
     limit_erreicht = {}
     for f in db.anmeldung:

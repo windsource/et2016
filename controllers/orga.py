@@ -22,6 +22,8 @@ def list():
     db.anmeldung.bezahlt.writable = True
     db.anmeldung.zahlungsdatum.readable = True
     db.anmeldung.zahlungsdatum.writable = True
+    db.anmeldung.sprache.readable = True
+    db.anmeldung.sprache.writable = True
     grid = SQLFORM.grid(db.anmeldung, create=False,
                         deletable=auth.has_membership('darfalles'),
                         editable=auth.has_membership('darfalles'))
@@ -37,7 +39,7 @@ def events():
     gesamtSoll = 0
     gesamtIst  = 0
     
-    for v in veranstaltungen + ('spieler', 'mannschaft_gesucht', 'vegetarier'):
+    for v in veranstaltungen + ('vegetarier'):
         label=db.anmeldung[v].label
         countAdult=db((db.anmeldung[v]==True) & (db.anmeldung.kind==False)).count()
         countChild=db((db.anmeldung[v]==True) & (db.anmeldung.kind==True)).count()

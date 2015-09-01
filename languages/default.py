@@ -38,6 +38,7 @@
 'Email and SMS': 'Email and SMS',
 'enter an integer between %(min)g and %(max)g': 'enter an integer between %(min)g and %(max)g',
 'enter date and time as %(format)s': 'enter date and time as %(format)s',
+'Enter date as %(format)s': 'Biite Datum in der Form %(format)s eingeben',
 'Errors': 'Errors',
 'Errors in form, please check it out.': 'Fehler im Formular. Bitte überprüfen.',
 'FAQ': 'FAQ',

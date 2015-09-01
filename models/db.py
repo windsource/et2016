@@ -43,7 +43,7 @@ db.define_table('anmeldung',
          requires = IS_NOT_EMPTY(error_message=T('Bitte eine Mobiltelefonnummer eingeben')), 
          label=T('Mobiltelefon')),
    Field('strasse', label=T('Straße'),
-         requires = IS_NOT_EMPTY()),
+         requires = IS_NOT_EMPTY(error_message=T('Bitte eine Straße eingeben'))),
    Field('plz',
          requires = IS_NOT_EMPTY(error_message=T('Bitte eine Postleitzahl eingeben')), 
          label=T('PLZ')),
@@ -202,6 +202,8 @@ db.anmeldung.sa_ball.preis = Price(68)
 db.anmeldung.so_verabschiedung.preis = Price(0)
 
 db.anmeldung.bedingungen.comment = T("Teilnahme auf eigene Gefahr")
+db.anmeldung.geburtsdatum.comment = T("Wird für Preisberechnung und Busunternehmen benötigt.")
+
      
 # Max. Anzahl Teilnehmer
 #db.anmeldung.sa_flughafen.limit = (29, T('Führung Flughafen ist leider ausgebucht. Interesse an Warteliste bitte unten im Kommentar vermerken'))
