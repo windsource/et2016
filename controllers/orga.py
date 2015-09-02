@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 #@PydevCodeAnalysisIgnore
 
+import datetime
+
 #########################################################################
 ## This controller provides functionality for the orga team only.
 #########################################################################
@@ -39,12 +41,38 @@ def events():
     gesamtSoll = 0
     gesamtIst  = 0
     
-    for v in veranstaltungen + ('vegetarier'):
+    for v in veranstaltungen + ('vegetarier',):
         label=db.anmeldung[v].label
-        countAdult=db((db.anmeldung[v]==True) & (db.anmeldung.kind==False)).count()
-        countChild=db((db.anmeldung[v]==True) & (db.anmeldung.kind==True)).count()
-        eventlist.append((label,countAdult+countChild,countAdult,countChild))
-        
+        value = ''
+        if (v=='mo_wuerzburg'):
+            value = 'Insgesamt : ' + str(db(db.anmeldung[v]==True).count()) + '<br />'
+            max_date = Price.referenceDate - datetime.timedelta(days=365*16)
+            value += 'Erwachsene : ' + str(db((db.anmeldung[v]==True) & (db.anmeldung.geburtsdatum <= max_date)).count()) + '<br />'
+            min_date = max_date
+            max_date = Price.referenceDate - datetime.timedelta(days=365*12)
+            value += 'Kind bis 16 J. : ' + str(db((db.anmeldung[v]==True) & (db.anmeldung.geburtsdatum > min_date) & (db.anmeldung.geburtsdatum <= max_date)).count()) + '<br />'
+            min_date = max_date
+            max_date = Price.referenceDate - datetime.timedelta(days=365*6)
+            value += 'Kind bis 12 J. : ' + str(db((db.anmeldung[v]==True) & (db.anmeldung.geburtsdatum > min_date) & (db.anmeldung.geburtsdatum <= max_date)).count()) + '<br />'
+            min_date = max_date
+            value += 'Kind bis 6 J. : ' + str(db((db.anmeldung[v]==True) & (db.anmeldung.geburtsdatum > min_date)).count())
+        elif (v=='mi_essen_wanderung'):
+            count = db.anmeldung[v].count()
+            for row in db(db.anmeldung.mi_wanderung==True).select(db.anmeldung[v], count, groupby=db.anmeldung[v]):
+                value += db.anmeldung[v].represent(row.anmeldung[v], None) + ' : ' + str(row[count]) + '<br />'
+        elif (v=='fr_essen'):
+            count = db.anmeldung[v].count()
+            for row in db(db.anmeldung.fr_regensburg==True).select(db.anmeldung[v], count, groupby=db.anmeldung[v]):
+                value += db.anmeldung[v].represent(row.anmeldung[v], None) + ' : ' + str(row[count]) + '<br />'
+        elif (db.anmeldung[v].type == 'boolean'):
+            value = db(db.anmeldung[v]==True).count()
+        elif (db.anmeldung[v].type == 'integer'):
+            count = db.anmeldung[v].count()
+            for row in db().select(db.anmeldung[v], count, groupby=db.anmeldung[v]):
+                value += db.anmeldung[v].represent(row.anmeldung[v], None) + ' : ' + str(row[count]) + '<br />'
+        else:
+            value = '??'
+        eventlist.append((label, value))
     return locals()
 
 # Show the payments for each participant
@@ -78,9 +106,9 @@ def changePayment():
                        bezahlt=form.vars.bezahlt)
         message = response.render('orga/confirmPaymentMail.txt', context)
         mail.send(record.email,
-                  subject='Ostervolleyballturnier 2015: Bestätigung der Zahlung',
+                  subject='Europatreffen 2016: Bestätigung der Zahlung / Confirmation of payment',
                   message=message,
-                  cc=['anmeldung@ostervolleyballturnier.de']
+                  cc=['anmeldung@europatreffen2016.eu']
                   )
         
         redirect(URL("payment"))
@@ -89,7 +117,7 @@ def changePayment():
     
 @auth.requires_membership('orgateam')
 def birthdays():
-    response.subtitle = 'Geburtstage während des Ostertreffens'
+    response.subtitle = 'Geburtstage während des Europatreffens'
     return dict()
 
 @auth.requires_membership('orgateam')

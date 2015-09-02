@@ -7,20 +7,31 @@ def printBirthday(day, month):
 	return SQLTABLE(rows, headers={'anmeldung.vorname':'Vorname',
 	                               'anmeldung.nachname':'Nachname',
 	                               'anmeldung.geburtsdatum':'Geburtsdatum',
-	                               'anmeldung.bezirk':'Bezirk'})
+	                               'anmeldung.bezirk':'Bezirk'}, _class="table table-striped")
 	pass
 }}
 	
 
-<h3>{{=T("Freitag 03.04.2015")}}</h3>
-{{=printBirthday(3,4)}}
+<h3>{{=T("Sonntag 01.08.2016")}}</h3>
+{{=printBirthday(1,8)}}
 
-<h3>{{=T("Samstag 04.04.2015")}}</h3>
-{{=printBirthday(4,4)}}
+<h3>{{=T("Montag 02.08.2016")}}</h3>
+{{=printBirthday(2,8)}}
 
-<h3>{{=T("Sonntag 05.04.2015")}}</h3>
-{{=printBirthday(5,4)}}
+<h3>{{=T("Dienstag 03.08.2016")}}</h3>
+{{=printBirthday(3,8)}}
 
-<h3>{{=T("Montag 06.04.2015")}}</h3>
-{{=printBirthday(6,4)}}
+<h3>{{=T("Mittwoch 04.08.2016")}}</h3>
+{{=printBirthday(4,8)}}
 
+<h3>{{=T("Donnerstag 05.08.2016")}}</h3>
+{{=printBirthday(5,8)}}
+
+<h3>{{=T("Freitag 06.08.2016")}}</h3>
+{{=printBirthday(6,8)}}
+
+<h3>{{=T("Samstag 07.08.2016")}}</h3>
+{{=printBirthday(7,8)}}
+
+<h3>{{=T("Sonntag 08.08.2016")}}</h3>
+{{=printBirthday(8,8)}}

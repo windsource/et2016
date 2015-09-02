@@ -1,7 +1,18 @@
 {{="Hallo %(vorname)s," % dict(vorname=vorname,nachname=nachname)}}
 
-hiermit bestätigen wir dir den Zahlungseingang von {{="%.2f Euro" % (bezahlt)}} für das Ostervolleyballturnier 2015 in Leipzig.
+hiermit bestätigen wir dir den Zahlungseingang von {{="%.2f Euro" % (bezahlt)}} für das Europatreffen 2016 in Nürnberg.
 
 Viele Dank und viele Grüße
 
 Orgateam
+
+--
+
+{{="Hello %(vorname)s," % dict(vorname=vorname,nachname=nachname)}}
+
+we confirm the reception of {{="%.2f Euro" % (bezahlt)}} for the Europatreffen 2016 in Nuremberg.
+
+Thank you very much and best regards
+
+Organisation team
+

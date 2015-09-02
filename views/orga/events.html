@@ -4,18 +4,14 @@
 <h3>Teilnehmer insgesamt: {{=teilnehmer}}</h3>
 <table class="table table-striped">
 <tr>
-<th>Veranstaltung</th>
-<th>Teilnehmer insgesamt</th>
-<th>Erwachsene</th>
-<th>Kinder</th>
+<th>Art</th>
+<th>Personen / Werte</th>
 </tr>
 
 {{for event in eventlist:}}
 <tr>
 <td>{{=event[0]}}</td>
-<td>{{=event[1]}}</td>
-<td>{{=event[2]}}</td>
-<td>{{=event[3]}}</td>
+<td>{{=XML(event[1])}}</td>
 </tr>
 {{pass}}
 </table>
