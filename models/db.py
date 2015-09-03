@@ -42,7 +42,7 @@ db.define_table('anmeldung',
    Field('telefon',
          requires = IS_NOT_EMPTY(error_message=T('Bitte eine Mobiltelefonnummer eingeben')), 
          label=T('Mobiltelefon')),
-   Field('strasse', label=T('Straße'),
+   Field('strasse', label=T('Straße und Hausnummer'),
          requires = IS_NOT_EMPTY(error_message=T('Bitte eine Straße eingeben'))),
    Field('plz',
          requires = IS_NOT_EMPTY(error_message=T('Bitte eine Postleitzahl eingeben')), 
@@ -100,7 +100,10 @@ db.define_table('anmeldung',
          label=T('Poolparty')),
    
    Field('do_minigolf', 'boolean', 
-         label=T('3D Schwarzlich Minigolf')),
+         label=T('3D Schwarzlicht Minigolf')),
+   Field('do_zeit_minigolf', 'list:string',
+         label=T('Zeitauswahl 3D Schwarzlicht Minigolf (mehrere möglich)'),
+         requires = IS_IN_SET(['9:30', '11:30', '13:30'], multiple=True)),
    Field('do_partyschiff', 'boolean', 
          label=T('Partyschiff')),
 
@@ -145,11 +148,12 @@ class Price(object):
     child6 = T("Kinder bis 6 J.", lazy=False)
     referenceDate = datetime.date(2016,5,1)
     
-    def __init__(self, price_adult, price_child16=None, price_child12=None, price_child6=None):
+    def __init__(self, price_adult, price_child16=None, price_child12=None, price_child6=None, price_text=None):
         self.price_adult = price_adult
         self.price_child16 = price_child16
         self.price_child12 = price_child12
         self.price_child6 = price_child6
+        self.price_text = price_text
         
     @staticmethod
     def val_to_string(val):
@@ -158,7 +162,9 @@ class Price(object):
         return T('auf eigene Kosten', lazy=False)
     
     def __str__(self):
-        if (self.price_child16 is None):
+        if ( self.price_text is not None):
+            return self.price_text
+        elif (self.price_child16 is None):
             return Price.val_to_string(self.price_adult)
         return "%.2f €, %s %.2f €, %s %.2f €, %s %.2f €" % (self.price_adult, Price.child16, self.price_child16, Price.child12, self.price_child12, Price.child6, self.price_child6)
     
@@ -193,7 +199,7 @@ db.anmeldung.mi_wanderung.preis = Price(19)
 db.anmeldung.mi_essen_wanderung.preis = Price(0)
 db.anmeldung.mi_tiergarten.preis = Price(0)
 db.anmeldung.mi_poolparty.preis = Price(30)
-db.anmeldung.do_minigolf.preis = Price(0)
+db.anmeldung.do_minigolf.preis = Price(6,6,0,0, T('6.00 €, Kinder unter 12 Jahren umsonst', lazy=False))
 db.anmeldung.do_partyschiff.preis = Price(58)
 db.anmeldung.fr_regensburg.preis = Price(45)
 db.anmeldung.fr_essen.preis = Price(0)

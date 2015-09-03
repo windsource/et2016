@@ -36,7 +36,9 @@ function options() {
 }
 
 $( document ).ready(function() {
-  $('textarea[name=kommentar]').prop('rows', '2');
+  $('select#anmeldung_do_zeit_minigolf').attr('size','3')
+  
+  $('textarea[name=kommentar]').prop('rows', '5');
 
   if (!$('input[name=mitglied]').is(':checked')) {
 	  $('input[name=bezirk]').prop('disabled', true);

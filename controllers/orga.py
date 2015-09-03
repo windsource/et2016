@@ -64,6 +64,12 @@ def events():
             count = db.anmeldung[v].count()
             for row in db(db.anmeldung.fr_regensburg==True).select(db.anmeldung[v], count, groupby=db.anmeldung[v]):
                 value += db.anmeldung[v].represent(row.anmeldung[v], None) + ' : ' + str(row[count]) + '<br />'
+        if (v=='do_minigolf'):
+            value = 'Insgesamt : ' + str(db(db.anmeldung[v]==True).count()) + '<br />'
+            max_date = Price.referenceDate - datetime.timedelta(days=365*12)
+            value += 'Erwachsene : ' + str(db((db.anmeldung[v]==True) & (db.anmeldung.geburtsdatum <= max_date)).count()) + '<br />'
+            min_date = max_date
+            value += 'Kind bis 12 J. : ' + str(db((db.anmeldung[v]==True) & (db.anmeldung.geburtsdatum > min_date)).count())
         elif (db.anmeldung[v].type == 'boolean'):
             value = db(db.anmeldung[v]==True).count()
         elif (db.anmeldung[v].type == 'integer'):
