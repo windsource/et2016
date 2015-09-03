@@ -2,7 +2,6 @@
 
 {{
 form.elements("#anmeldung_vorname__row")[0].insert(0,H3(T("Persönliche Daten")))
-form.elements("#anmeldung_anreise__row")[0].insert(0,H3(T("Unterkunft")))
 form.elements("#anmeldung_so_barfuesser__row")[0].insert(0,H3(T("Sonntag 01.05.2016")))
 form.elements("#anmeldung_mo_wuerzburg__row")[0].insert(0,H3(T("Montag 02.05.2016")))
 form.elements("#anmeldung_di_reichsparteitag__row")[0].insert(0,H3(T("Dienstag 03.05.2016")))
@@ -80,7 +79,9 @@ $( document ).ready(function() {
 	
 </script>
 
-<h2>{{=T('Neue Anmeldung zum Europatreffen 2016')}}</h2>
+<h2>{{=T('Anmeldung zum Europatreffen 2016')}}</h2>
+
+<p>{{=XML(T('Hier die Anmeldung zum Programm. Die Unterkunft bitte über %s buchen.' % A('separates Formular',_href='http://klublangermenschen.schmetterling-quadra.de/home',_target='blank')))}}</p>
 
 {{=form}}
 
