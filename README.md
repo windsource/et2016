@@ -17,7 +17,7 @@ After installation it provides two URIs, one for users to register the other for
 
 ### How do test it?
 
-See [test](test/README.md) section
+See [tests](tests/README.md) section
 
 
 That's it.
