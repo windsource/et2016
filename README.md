@@ -15,6 +15,11 @@ After installation it provides two URIs, one for users to register the other for
 * copy the `et2016` folder in `applications` directory
 * copy `et2016/models/0_login_example.py`to `et2016/models/0_login.py` and enter your db (sqlite or mysql), the credentials for the db and the credentials for your email provider.
 
+### How do test it?
+
+See [test](test/README.md) section
+
+
 That's it.
 
 Have fun.
