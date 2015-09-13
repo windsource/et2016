@@ -235,7 +235,7 @@ def gesamtpreis(vars):
 
     return betrag
 
-konto = T('IBAN: ???  / BIC: ?? / Bank XY')
+konto = T('IBAN: DE32830654080004885651, BIC: GENODEF1SLR, Skatbank')
 
 
     

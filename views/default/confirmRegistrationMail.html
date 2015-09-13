@@ -9,7 +9,7 @@ p, table {font-size: 100%;}
 {{=P(T('Vielen Dank für die Anmeldung zum Europatreffen 2016 in Nürnberg vom 01. bis 08. Mai 2016.'))}}
 
 <p>
-{{=T('Die Anmeldung wird erst verbindlich mit der Überweisung des Betrags von %(betrag).2f Euro auf das Konto des KLM Nürnberg:') % vars}}
+{{=T('Die Anmeldung wird erst verbindlich mit der Überweisung des Betrags von %(betrag).2f Euro auf das Konto des KLM Deutschland:') % vars}}
 {{=BR()}}
 {{=konto}}
 {{=BR()}}
@@ -110,10 +110,10 @@ def simple_table(fields):
 <br />
 
 <p>
-Viele Grüße
+{{=T("Viele Grüße")}}
 </p>
 <p>
-Orgateam Europatreffen 2016
+{{=T("Orgateam Europatreffen 2016")}}
 </p>
 </body>
 </html>
