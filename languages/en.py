@@ -13,7 +13,7 @@
 'Anmeldung von %(vorname)s %(nachname)s zum Europatreffen 2016': 'Registration of  %(vorname)s %(nachname)s for European Convention 2016',
 'Anmeldung zum Europatreffen 2016': 'Registration for European Convention 2016',
 'Are you sure you want to delete this object?': 'Are you sure you want to delete this object?',
-'auf eigene Kosten': 'at your own expenses',
+'auf eigene Kosten': 'at your own expense',
 'Available Databases and Tables': 'Available Databases and Tables',
 'Ball': 'Ball',
 'Begrüßung im "Barfüßer"': 'Welcoming evening',
