@@ -24,4 +24,4 @@ That's it.
 
 Have fun.
 
-windsource@gmx.de
+[windsource](https://github.com/windsource)
