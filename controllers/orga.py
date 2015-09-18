@@ -41,7 +41,7 @@ def events():
     gesamtSoll = 0
     gesamtIst  = 0
     
-    for v in veranstaltungen + ('vegetarier',):
+    for v in veranstaltungen + ('vegetarier', 'unterkunft'):
         label=db.anmeldung[v].label
         value = ''
         if (v=='mo_wuerzburg'):

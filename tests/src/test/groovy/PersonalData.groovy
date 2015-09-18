@@ -24,6 +24,7 @@ class CreatePage extends Page{
 		vegetarier { $("form#create_form").vegetarier() }
 		mitglied { $("form#create_form").mitglied() }
 		bezirk { $("form#create_form").bezirk() }
+		unterkunft { $("form#create_form").unterkunft() }
 		so_barfuesser { $("form#create_form").so_barfuesser() }
 		mo_wuerzburg { $("form#create_form").mo_wuerzburg() }		
 		di_reichsparteitag { $("form#create_form").di_reichsparteitag() }
@@ -97,6 +98,7 @@ class PersonalData extends GroovyTestCase {
 			to CreatePage
 			fillPersonalData(page)
 			
+			page.unterkunft.value "1"
 			page.kommentar.value "Ich komme gern!"
 			page.bedingungen.value "on"
 			
@@ -155,7 +157,7 @@ class PersonalData extends GroovyTestCase {
 			page ConfirmPage
 			verifyAt()
 			
-			assertTrue page.gesamtpreis.text() == "Gesamtpreis: 82.00 €"			
+			assert page.gesamtpreis.text() == "Gesamtpreis: 82.00 €"			
 
 			page.confirmButton.click()
 			
@@ -184,7 +186,7 @@ class PersonalData extends GroovyTestCase {
 			page ConfirmPage
 			verifyAt()
 			
-			assertTrue page.gesamtpreis.text() == "Gesamtpreis: 61.00 €"
+			assert page.gesamtpreis.text() == "Gesamtpreis: 61.00 €"
 
 			page.confirmButton.click()
 			
@@ -213,7 +215,7 @@ class PersonalData extends GroovyTestCase {
 			page ConfirmPage
 			verifyAt()
 			
-			assertTrue page.gesamtpreis.text() == "Gesamtpreis: 46.00 €"
+			assert page.gesamtpreis.text() == "Gesamtpreis: 46.00 €"
 
 			page.confirmButton.click()
 			
@@ -242,7 +244,7 @@ class PersonalData extends GroovyTestCase {
 			page ConfirmPage
 			verifyAt()
 			
-			assertTrue(page.gesamtpreis.text() == "Gesamtpreis: 38.00 €")
+			assert(page.gesamtpreis.text() == "Gesamtpreis: 38.00 €")
 
 			page.confirmButton.click()
 			
@@ -271,6 +273,7 @@ class PersonalData extends GroovyTestCase {
 				vegetarier.value "on"
 				mitglied.value "on"
 				bezirk.value "Basel"
+				unterkunft.value "3"
 								
 				so_barfuesser.value "on"
 				mo_wuerzburg.value "on"
@@ -296,7 +299,7 @@ class PersonalData extends GroovyTestCase {
 			page ConfirmPage
 			verifyAt()
 			
-			assertTrue(page.gesamtpreis.text() == "Gesamtpreis: 330.50 €")
+			assert(page.gesamtpreis.text() == "Gesamtpreis: 330.50 €")
 			
 			page.confirmButton.click()
 			

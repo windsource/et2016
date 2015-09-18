@@ -63,6 +63,9 @@ db.define_table('anmeldung',
          label=T('Mitglied im KdG bzw. KLM')),
    Field('bezirk',
          label=T('Bezirk (falls Mitglied)')),
+   Field('unterkunft', 'integer',
+         default=0,
+         label=T('Unterkunft (nur Info, hier keine Buchung)')),
    
    Field('so_barfuesser', 'boolean', 
          label=T('Begrüßung im "Barfüßer"')),
@@ -178,6 +181,10 @@ db.anmeldung.mi_essen_wanderung.represent = lambda v, r: db.anmeldung.mi_essen_w
 db.anmeldung.fr_essen.names = [T('Kein Essen'), T('Essen 1'), T('Essen 2')]
 db.anmeldung.fr_essen.requires = IS_IN_SET(map(lambda s: str(s), range(0, len(db.anmeldung.fr_essen.names))), db.anmeldung.fr_essen.names)
 db.anmeldung.fr_essen.represent = lambda v, r: db.anmeldung.fr_essen.names[int(v)]
+
+db.anmeldung.unterkunft.names = [T('Sonstige'), T('Acom Nürnberg'), T('Ibis Nürnberg Hauptbahnhof'), T('A&O Nürnberg Hauptbahnhof')]
+db.anmeldung.unterkunft.requires = IS_IN_SET(map(lambda s: str(s), range(0, len(db.anmeldung.unterkunft.names))), db.anmeldung.unterkunft.names)
+db.anmeldung.unterkunft.represent = lambda v, r: db.anmeldung.unterkunft.names[int(v)]
 
 db.anmeldung.so_barfuesser.preis = Price(0)
 db.anmeldung.mo_wuerzburg.preis = Price(76, 55, 46, 38)

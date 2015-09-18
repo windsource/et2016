@@ -41,7 +41,7 @@ def simple_table(fields):
 
 {{=simple_table(['vorname', 'nachname', 'email', 'telefon', 'strasse', 'plz', 'ort',
                  'land', 
-                 'geburtsdatum', 'vegetarier', 'mitglied', 'bezirk'])}}
+                 'geburtsdatum', 'vegetarier', 'mitglied', 'bezirk', 'unterkunft'])}}
 
 
 {{=H3(T("Sonntag 01.05.2016"))}}
@@ -87,6 +87,8 @@ def simple_table(fields):
 {{=H3(T("Sonstiges"))}}
 
 {{=simple_table(['kommentar'])}}
+
+{{=BR()}}
 
 {{=H3(T("Gesamtpreis: %.2f €") % session.vars.betrag)}}
 
