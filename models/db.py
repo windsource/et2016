@@ -86,7 +86,7 @@ db.define_table('anmeldung',
          label=T('Wanderung')),
    Field('mi_essen_wanderung', 'integer',
          default=0,
-         label=T('Essensauswahl Wanderung')),
+         label=T('Essensauswahl Wanderung (Zahlung vor Ort)')),
    Field('mi_tiergarten', 'boolean', 
          label=T('Tiergarten')),
    Field('mi_poolparty', 'boolean', 
@@ -104,7 +104,7 @@ db.define_table('anmeldung',
          label=T('Tagesausflug nach Regensburg')),
    Field('fr_essen', 'integer',
          default=0,
-         label=T('Essensauswahl')),
+         label=T('Essensauswahl (Zahlung vor Ort)')),
 
    Field('sa_stadtfuehrung', 'boolean', 
          label=T('Große Stadtführung')),
@@ -118,7 +118,7 @@ db.define_table('anmeldung',
          label=T("Kommentar")),
    Field('bedingungen', 'boolean', 
          requires = IS_EQUAL_TO('on', error_message=T('Bitte akzeptieren')),
-         label=XML(T('Ich akzeptiere die %s' % A('Teilnahmebedingungen',_href='http://ostervolleyballturnier.de/?page_id=73',_target='blank')))),
+         label=XML(T('Ich akzeptiere die %s' % A('Teilnahmebedingungen',_href='http://europatreffen2016.eu/index.php/de/anmeldung/teilnahmebedingungen',_target='blank')))),
    Field('anmeldedatum', 'datetime',
          default=request.now, writable=False, readable=False),
    Field('sprache',
@@ -174,11 +174,22 @@ class Price(object):
             return self.price_adult
     
 
-db.anmeldung.mi_essen_wanderung.names = [T('Kein Wanderessen'), T('Wanderessen 1'), T('Wanderessen 2')]
+db.anmeldung.mi_essen_wanderung.names = [T('Kein Mittagessen'), 
+                                         T('Fränkischer Sauerbraten mit 2 Klößen und Rotkohl 7,80 €'), 
+                                         T('Rinderroulade mit 2 Klößen und Rotkohl 7,80 €'),
+                                         T('Schweineschnitzel mit Kartoffelsalat und Salat 8 €'), 
+                                         T('Schweinelende in Cognacsoße und Salat 11 €'), 
+                                         T('Scholle gebacken mit Kartoffeln und Salat 6,50 €'), 
+                                         T('Käsespätzle 5 €'),
+                                         T('Großer Salat mit Putenbruststreifen 6 €')]
 db.anmeldung.mi_essen_wanderung.requires = IS_IN_SET(map(lambda s: str(s), range(0, len(db.anmeldung.mi_essen_wanderung.names))), db.anmeldung.mi_essen_wanderung.names)
 db.anmeldung.mi_essen_wanderung.represent = lambda v, r: db.anmeldung.mi_essen_wanderung.names[int(v)]
 
-db.anmeldung.fr_essen.names = [T('Kein Essen'), T('Essen 1'), T('Essen 2')]
+db.anmeldung.fr_essen.names = [T('Kein Abendessen'), 
+                               T('Hähnchenbrust mit Kartoffelgratin und Gemüse 12,80 €'),
+                               T('Seehecht mit Kräuterreis und Gemüse 13,90 €'),
+                               T('Mit Spinat gefüllte Nudelteigtaschen auf Gemüse-Tomaten-Ragout 10,80 €'),
+                               T('Für Kinder: Paniertes Knusperschnitzel mit Pommes Frites 5,80 €')]
 db.anmeldung.fr_essen.requires = IS_IN_SET(map(lambda s: str(s), range(0, len(db.anmeldung.fr_essen.names))), db.anmeldung.fr_essen.names)
 db.anmeldung.fr_essen.represent = lambda v, r: db.anmeldung.fr_essen.names[int(v)]
 

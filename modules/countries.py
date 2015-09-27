@@ -1,6 +1,6 @@
 
 
-COUNTRIES=('United States', 
+COUNTRIES=( 
 'Afghanistan', 
 'Albania', 
 'Algeria', 
@@ -185,7 +185,8 @@ COUNTRIES=('United States',
 'Uganda', 
 'Ukraine', 
 'United Arab Emirates', 
-'United Kingdom', 
+'United Kingdom',
+'United States', 
 'Uruguay', 
 'Uzbekistan', 
 'Vanuatu', 
