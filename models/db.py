@@ -22,7 +22,12 @@ mail.settings.login = MAIL_LOGIN
 #########################################################################
 ## language settings
 #########################################################################
-T.set_current_languages('de', 'de-de')
+try:
+    # the following call causes an exeption if the language file given by the accepted browser languages is not found
+    # we have to catch it  
+    T.set_current_languages('de', 'de-de')
+except:
+    pass
 if request.vars['lang'] is not None:
     session.language = request.vars['lang']
 if session.language is not None:
