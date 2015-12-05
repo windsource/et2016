@@ -21,6 +21,7 @@
 'Acom Nürnberg': 'Acom Nürnberg',
 'Add this to the search as an AND term': 'Add this to the search as an AND term',
 'Add this to the search as an OR term': 'Add this to the search as an OR term',
+'Adresse: KLUB LANGER MENSCHEN (KLM) DEUTSCHLAND e.V., Holger Schnieder, Bad Essener Straße 35, D-49143 Bissendorf': 'Address: KLUB LANGER MENSCHEN (KLM) DEUTSCHLAND e.V., Holger Schnieder, Bad Essener Straße 35, D-49143 Bissendorf',
 'Als Verwendungszweck bitte "ET 2016 %(vorname)s %(nachname)s" angeben.': 'Reference: "EC 2016 %(vorname)s %(nachname)s"',
 'Anmeldedatum': 'Anmeldedatum',
 'Anmeldung von %(vorname)s %(nachname)s zum Europatreffen 2016': 'Registration of  %(vorname)s %(nachname)s for European Convention 2016',
