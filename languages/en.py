@@ -61,7 +61,7 @@
 'Die Anmeldung wird erst verbindlich mit der Überweisung des Betrags von %(betrag).2f Euro auf das Konto des KLM Deutschland:': 'Registration will be accepted by transferring the amount of %(betrag).2f Euro to the bank account of KLM Germany:',
 'Die folgenden Daten sind vermerkt:': 'We stored the following data:',
 'Die Zahlung sollte bis 14 Tage nach Anmeldung erfolgen.': 'Please transfer amount not later than 2 weeks after registration.',
-'Dienstag 03.05.2016': 'Thursday May 3, 2016',
+'Dienstag 03.05.2016': 'Tuesday May 3, 2016',
 'Dokumentationszentrum Reichsparteitagsgelände': 'Documentation Center Nazi Party Rally Grounds',
 'Donnerstag 05.05.2016': 'Thursday May 5, 2016',
 'E-mail': 'E-mail',
