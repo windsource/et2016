@@ -3,7 +3,9 @@
 <h3>{{=T("Anmeldungen pro Bezirk")}}</h3>
 
 {{
-	=SQLTABLE(rows, headers={'anmeldung.bezirk':'Bezirk', 'COUNT(anmeldung.bezirk)':'Anmeldungen'},
-	_class="table table-striped")
+	=SQLTABLE(rows, 
+	          headers={'anmeldung.bezirk':'Bezirk', 'COUNT(anmeldung.bezirk)':'Anmeldungen'},
+	          truncate=80,
+	          _class="table table-striped")
 }}
 	
