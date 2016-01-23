@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # this file is released under public domain and you can use without limitations
+#@PydevCodeAnalysisIgnore
 
 #########################################################################
 ## Customize your APP title, subtitle and menus here
@@ -31,11 +32,7 @@ response.menu = [
     menu('Veranstaltungen', 'orga', 'events'),
     menu('Geburtstage', 'orga', 'birthdays'),
     menu('Zahlungen', 'orga', 'payment'),
-#    menu('Statistiken', '', '', [
-#                                 menu('Anmeldungen pro Bezirk', 'orga', 'bezirke'),
-#                                 menu('Anmeldungen im zeitlichen Verlauf', 'orga', 'verlauf')]),
-    
-    
+    menu('Statistik', 'orga', 'districtGroups')
 ]
 
 DEVELOPMENT_MENU = False

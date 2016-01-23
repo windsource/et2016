@@ -127,9 +127,13 @@ def birthdays():
     return dict()
 
 @auth.requires_membership('orgateam')
-def bezirke():
-    response.view = 'orga/statistics.html'
-    return dict(url=URL('statistik','bezirke'))
+def districtGroups():
+    count=db.anmeldung.bezirk.count()
+    rows = db().select(db.anmeldung.bezirk, 
+                       count,
+                       orderby=db.anmeldung.bezirk,
+                       groupby=db.anmeldung.bezirk)
+    return dict(rows=rows)
 
 @auth.requires_membership('orgateam')
 def verlauf():
