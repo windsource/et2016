@@ -225,7 +225,7 @@ db.anmeldung.geburtsdatum.comment = T("Wird für Preisberechnung und Busunterneh
 
 
 # Max. Anzahl Teilnehmer
-db.anmeldung.di_kino.limit = (0, T('Kino ist leider ausgebucht'))
+db.anmeldung.di_kino.limit = (99, T('Kino ist leider ausgebucht'))
 #db.anmeldung.sa_rathaus.limit = (24, T('Führung Altes Rathaus ist leider ausgebucht. Interesse an Warteliste bitte unten im Kommentar vermerken'))
 #db.anmeldung.sa_krimitour.limit = (28, T('Krimi-Tour ist leider ausgebucht. Interesse an Warteliste bitte unten im Kommentar vermerken'))
 
