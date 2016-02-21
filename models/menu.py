@@ -32,7 +32,9 @@ response.menu = [
     menu('Veranstaltungen', 'orga', 'events'),
     menu('Geburtstage', 'orga', 'birthdays'),
     menu('Zahlungen', 'orga', 'payment'),
-    menu('Statistik', 'orga', 'districtGroups'),
+    menu('Statistiken', '', '', [
+                                 menu('Anmeldungen pro Bezirk', 'orga', 'districtGroups'),
+                                 menu('Anmeldungen pro Land', 'orga', 'countries')]),
     menu('Persönliche Daten', 'orga', 'personalData')
 ]
 

@@ -136,6 +136,15 @@ def districtGroups():
     return dict(rows=rows)
 
 @auth.requires_membership('orgateam')
+def countries():
+    count=db.anmeldung.land.count()
+    rows = db().select(db.anmeldung.land, 
+                       count,
+                       orderby=~count,
+                       groupby=db.anmeldung.land)
+    return dict(rows=rows)
+
+@auth.requires_membership('orgateam')
 def verlauf():
     response.view = 'orga/statistics.html'
     return dict(url=URL('statistik','anmeldungen'))

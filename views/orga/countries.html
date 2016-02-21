@@ -1,0 +1,11 @@
+{{extend 'layout.html'}}
+
+<h3>{{=T("Anmeldungen pro Land")}}</h3>
+
+{{
+	=SQLTABLE(rows, 
+	          headers={'anmeldung.land':'Land', 'COUNT(anmeldung.land)':'Anmeldungen'},
+	          truncate=80,
+	          _class="table table-striped")
+}}
+	
