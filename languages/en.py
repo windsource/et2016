@@ -105,6 +105,7 @@
 'Kinder bis 16 J.': 'children under 16',
 'Kinder bis 6 J.': 'children under 6',
 'Kino der etwas anderen Art': 'A different kind of cinema',
+'Kino ist leider ausgebucht': 'Cinema is fully booked',
 'Kommentar': 'Comments',
 'Korrigieren': 'Modify',
 'Käsespätzle 5 €': 'Cheese noodles 5 €',
