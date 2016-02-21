@@ -32,7 +32,8 @@ response.menu = [
     menu('Veranstaltungen', 'orga', 'events'),
     menu('Geburtstage', 'orga', 'birthdays'),
     menu('Zahlungen', 'orga', 'payment'),
-    menu('Statistik', 'orga', 'districtGroups')
+    menu('Statistik', 'orga', 'districtGroups'),
+    menu('Persönliche Daten', 'orga', 'personalData')
 ]
 
 DEVELOPMENT_MENU = False

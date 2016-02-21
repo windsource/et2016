@@ -139,3 +139,18 @@ def districtGroups():
 def verlauf():
     response.view = 'orga/statistics.html'
     return dict(url=URL('statistik','anmeldungen'))
+
+# Review personal data
+@auth.requires_membership('orgateam')
+def personalData():
+    response.subtitle = 'Persönliche Daten'
+    db.anmeldung.sprache.readable = True
+    db.anmeldung.sprache.writable = True
+    grid = SQLFORM.grid(db.anmeldung, create=False,
+                        fields=[db.anmeldung.vorname, db.anmeldung.nachname, db.anmeldung.email, 
+                                db.anmeldung.bezirk, db.anmeldung.kommentar],
+                        maxtextlength=100,
+                        paginate=500,
+                        deletable=auth.has_membership('darfalles'),
+                        editable=auth.has_membership('darfalles'))
+    return dict(grid=grid)
