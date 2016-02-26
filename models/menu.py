@@ -35,7 +35,10 @@ response.menu = [
     menu('Statistiken', '', '', [
                                  menu('Anmeldungen pro Bezirk', 'orga', 'districtGroups'),
                                  menu('Anmeldungen pro Land', 'orga', 'countries')]),
-    menu('Persönliche Daten', 'orga', 'personalData')
+    menu('Persönliche Daten', 'orga', 'personalData'),
+    menu('Zuordnung', '', '', [
+                                 menu('Gruppen Dienstag', 'orga', 'groupTuesday'),
+                                 menu('Gruppen Samstag', 'orga', 'groupSaturday')]),
 ]
 
 DEVELOPMENT_MENU = False

@@ -26,6 +26,13 @@ def list():
     db.anmeldung.zahlungsdatum.writable = True
     db.anmeldung.sprache.readable = True
     db.anmeldung.sprache.writable = True
+    db.anmeldung.di_reichsparteitag_gruppe.readable = True
+    db.anmeldung.di_reichsparteitag_gruppe.writable = True
+    db.anmeldung.di_dokuzentrum_gruppe.readable = True
+    db.anmeldung.di_dokuzentrum_gruppe.writable = True
+    db.anmeldung.sa_stadtfuehrung_gruppe.readable = True
+    db.anmeldung.sa_stadtfuehrung_gruppe.writable = True
+
     grid = SQLFORM.grid(db.anmeldung, create=False,
                         deletable=auth.has_membership('darfalles'),
                         editable=auth.has_membership('darfalles'))
@@ -161,5 +168,84 @@ def personalData():
                         maxtextlength=100,
                         paginate=500,
                         deletable=auth.has_membership('darfalles'),
+                        editable=auth.has_membership('darfalles'))
+    return dict(grid=grid)
+
+# Assign group Tuesday
+@auth.requires_membership('orgateam')
+def groupTuesday():
+    response.subtitle = 'Gruppenzuordnung Dienstag'
+    db.anmeldung.sprache.readable = True
+    db.anmeldung.sprache.writable = True
+    db.anmeldung.di_reichsparteitag_gruppe.readable = True
+    db.anmeldung.di_reichsparteitag_gruppe.writable = True
+    db.anmeldung.di_dokuzentrum_gruppe.readable = True
+    db.anmeldung.di_dokuzentrum_gruppe.writable = True
+    
+    if request.args(0) == 'edit':
+        for f in db.anmeldung:
+            f.readable = False
+            f.writable = False
+        db.anmeldung.vorname.readable = True
+        db.anmeldung.vorname.writable = True
+        db.anmeldung.nachname.readable = True
+        db.anmeldung.nachname.writable = True
+        db.anmeldung.sprache.readable = True
+        db.anmeldung.sprache.writable = True
+        db.anmeldung.di_reichsparteitag.readable = True
+        db.anmeldung.di_reichsparteitag.writable = True
+        db.anmeldung.di_reichsparteitag_gruppe.readable = True
+        db.anmeldung.di_reichsparteitag_gruppe.writable = True
+        db.anmeldung.di_dokuzentrum.readable = True
+        db.anmeldung.di_dokuzentrum.writable = True
+        db.anmeldung.di_dokuzentrum_gruppe.readable = True
+        db.anmeldung.di_dokuzentrum_gruppe.writable = True
+    
+    grid = SQLFORM.grid(query=((db.anmeldung.di_reichsparteitag==True) | (db.anmeldung.di_dokuzentrum==True)),
+                        fields=[db.anmeldung.vorname, db.anmeldung.nachname, 
+                                db.anmeldung.bezirk, db.anmeldung.sprache, 
+                                db.anmeldung.kommentar,
+                                db.anmeldung.di_reichsparteitag, db.anmeldung.di_reichsparteitag_gruppe,
+                                db.anmeldung.di_dokuzentrum, db.anmeldung.di_dokuzentrum_gruppe],
+                        maxtextlength=100,
+                        paginate=500,
+                        create=False,
+                        deletable=False,
+                        editable=auth.has_membership('darfalles'))
+    return dict(grid=grid)
+
+# Assign group Saturday
+@auth.requires_membership('orgateam')
+def groupSaturday():
+    response.subtitle = 'Gruppenzuordnung Samstag'
+    db.anmeldung.sprache.readable = True
+    db.anmeldung.sprache.writable = True
+    db.anmeldung.sa_stadtfuehrung_gruppe.readable = True
+    db.anmeldung.sa_stadtfuehrung_gruppe.writable = True
+    
+    if request.args(0) == 'edit':
+        for f in db.anmeldung:
+            f.readable = False
+            f.writable = False
+        db.anmeldung.vorname.readable = True
+        db.anmeldung.vorname.writable = True
+        db.anmeldung.nachname.readable = True
+        db.anmeldung.nachname.writable = True
+        db.anmeldung.sprache.readable = True
+        db.anmeldung.sprache.writable = True
+        db.anmeldung.sa_stadtfuehrung.readable = True
+        db.anmeldung.sa_stadtfuehrung.writable = True
+        db.anmeldung.sa_stadtfuehrung_gruppe.readable = True
+        db.anmeldung.sa_stadtfuehrung_gruppe.writable = True
+
+    grid = SQLFORM.grid(query=((db.anmeldung.sa_stadtfuehrung==True)),
+                        fields=[db.anmeldung.vorname, db.anmeldung.nachname, 
+                                db.anmeldung.bezirk, db.anmeldung.sprache, 
+                                db.anmeldung.kommentar,
+                                db.anmeldung.sa_stadtfuehrung, db.anmeldung.sa_stadtfuehrung_gruppe],
+                        maxtextlength=100,
+                        paginate=500,
+                        create=False,
+                        deletable=False,
                         editable=auth.has_membership('darfalles'))
     return dict(grid=grid)
