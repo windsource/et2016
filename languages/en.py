@@ -190,6 +190,7 @@
 'View': 'View',
 'Vorname': 'First name',
 'Wanderung': 'Nature hike',
+'Wanderung ist leider ausgebucht': 'Nature hike is fully booked',
 'Weiter': 'Next',
 'Welcome': 'Welcome',
 'Wir freuen uns sehr darauf, Dich in Nürnberg zu begrüßen!': 'We are looking forward to meet you in Nuremberg!',
