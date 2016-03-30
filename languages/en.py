@@ -164,6 +164,7 @@
 'Spreadsheet-optimised export of tab-separated content including hidden columns. May be slow': 'Spreadsheet-optimised export of tab-separated content including hidden columns. May be slow',
 'Spreadsheet-optimised export of tab-separated content, visible columns only. May be slow.': 'Spreadsheet-optimised export of tab-separated content, visible columns only. May be slow.',
 'Spätester Zahlungseingang ist der 4. April 2016.': 'Latest point in time for transferring amount is April 4, 2016.',
+'Stadtführung ist leider ausgebucht': 'Great city tour is fully booked',
 'Start building a new search': 'Start building a new search',
 'starts with': 'starts with',
 'state': 'state',
