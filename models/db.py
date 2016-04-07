@@ -237,6 +237,11 @@ db.anmeldung.geburtsdatum.comment = T("Wird für Preisberechnung und Busunterneh
 db.anmeldung.di_kino.limit = (99, T('Kino ist leider ausgebucht'))
 db.anmeldung.mi_wanderung.limit = (140, T('Wanderung ist leider ausgebucht'))
 db.anmeldung.sa_stadtfuehrung.limit = (180, T('Stadtführung ist leider ausgebucht'))
+db.anmeldung.di_rangierbahnhof.limit = (35, T('Rangierbahnhof ist leider ausgebucht'))
+db.anmeldung.di_dokuzentrum.limit = (75, T('Dokumentationszentrum Reichsparteitagsgelände ist leider ausgebucht'))
+db.anmeldung.di_reichsparteitag.limit = (100, T('Rundgang Reichsparteitagsgelände ist leider ausgebucht'))
+
+
 #db.anmeldung.sa_rathaus.limit = (24, T('Führung Altes Rathaus ist leider ausgebucht. Interesse an Warteliste bitte unten im Kommentar vermerken'))
 #db.anmeldung.sa_krimitour.limit = (28, T('Krimi-Tour ist leider ausgebucht. Interesse an Warteliste bitte unten im Kommentar vermerken'))
 
