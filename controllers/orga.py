@@ -214,6 +214,40 @@ def groupTuesday():
                         editable=auth.has_membership('darfalles'))
     return dict(grid=grid)
 
+# Assign group Thursday
+@auth.requires_membership('orgateam')
+def groupThursday():
+    response.subtitle = 'Gruppenzuordnung Donnerstag'
+    db.anmeldung.sprache.readable = True
+    db.anmeldung.sprache.writable = True
+    
+    if request.args(0) == 'edit':
+        for f in db.anmeldung:
+            f.readable = False
+            f.writable = False
+        db.anmeldung.vorname.readable = True
+        db.anmeldung.vorname.writable = True
+        db.anmeldung.nachname.readable = True
+        db.anmeldung.nachname.writable = True
+        db.anmeldung.sprache.readable = True
+        db.anmeldung.sprache.writable = True
+        db.anmeldung.do_minigolf.readable = True
+        db.anmeldung.do_minigolf.writable = True
+        db.anmeldung.do_zeit_minigolf.readable = True
+        db.anmeldung.do_zeit_minigolf.writable = True
+    
+    grid = SQLFORM.grid(query=(db.anmeldung.do_minigolf==True),
+                        fields=[db.anmeldung.vorname, db.anmeldung.nachname, 
+                                db.anmeldung.bezirk, db.anmeldung.sprache, 
+                                db.anmeldung.kommentar,
+                                db.anmeldung.do_minigolf, db.anmeldung.do_zeit_minigolf],
+                        maxtextlength=100,
+                        paginate=500,
+                        create=False,
+                        deletable=False,
+                        editable=auth.has_membership('darfalles'))
+    return dict(grid=grid)
+
 # Assign group Saturday
 @auth.requires_membership('orgateam')
 def groupSaturday():

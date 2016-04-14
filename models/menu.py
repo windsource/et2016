@@ -38,6 +38,7 @@ response.menu = [
     menu('Persönliche Daten', 'orga', 'personalData'),
     menu('Zuordnung', '', '', [
                                  menu('Gruppen Dienstag', 'orga', 'groupTuesday'),
+                                 menu('Gruppen Donnerstag', 'orga', 'groupThursday'),
                                  menu('Gruppen Samstag', 'orga', 'groupSaturday')]),
 ]
 
